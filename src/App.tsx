@@ -36,7 +36,7 @@ export default function App() {
   }, [reframes]);
 
   useEffect(() => {
-    let interval: any;
+    let interval: ReturnType<typeof setInterval> | undefined;
     if (isBreathingActive) {
       interval = setInterval(() => {
         setBreathCount((prev) => {
