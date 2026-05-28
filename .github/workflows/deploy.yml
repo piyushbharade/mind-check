@@ -29,8 +29,8 @@ jobs:
           node-version: 20
           cache: 'npm'
 
-      - name: Install Project Dependencies
-        run: npm install --include=dev
+      - name: Install All Project Dependencies
+        run: npm install
 
       - name: Compile Distribution Assets
         run: npm run build
