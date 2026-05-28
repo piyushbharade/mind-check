@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Heart, Activity, Wind, Music, Smile, Meh, Frown, Mic, Sparkles, Volume2 } from 'lucide-react';
-import { GoogleGenAI } from '@google/generative-ai';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 
 interface MoodLog {
   id: string;
@@ -104,8 +104,8 @@ export default function App() {
 
       setIsAiLoading(true);
       try {
-        const ai = GoogleGenAI({ apiKey });
-        const model = ai.getGenerativeModel({ model: "gemini-1.5-flash" });
+        const genAI = new GoogleGenerativeAI(apiKey);
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
         const prompt = `The following user is experiencing acute situational anxiety or stress. They said: "${transcript}". Act immediately as a calm, warm, grounding psychological first-aid assistant. Respond in 2 short, soothing sentences maximum. Provide breathing guidance or anchoring instructions. Keep language gentle and deeply clear.`;
         
         const response = await model.generateContent(prompt);
@@ -114,7 +114,7 @@ export default function App() {
         speakText(textResponse);
       } catch (err) {
         setAiAnalysis("Failed to access Gemini. Verify your connection or API configuration matrix.");
-      } finaly {
+      } finally {
         setIsAiLoading(false);
       }
     };
@@ -126,8 +126,8 @@ export default function App() {
     if (!apiKey || moods.length === 0) return;
     setIsAiLoading(true);
     try {
-      const ai = GoogleGenAI({ apiKey });
-      const model = ai.getGenerativeModel({ model: "gemini-1.5-flash" });
+      const genAI = new GoogleGenerativeAI(apiKey);
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
       const logsSummary = moods.slice(0, 5).map(m => m.note).join(' | ');
       
       const prompt = `Analyze these recent subjective headspace data points: "${logsSummary}". Synthesize a professional, concise mental clarity metric. Give 2 highly applicable cognitive reframing suggestions in a bulleted format. Do not use markdown codeblocks.`;
