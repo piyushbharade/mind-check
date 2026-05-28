@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Heart, Activity, Wind, Music, Smile, Meh, Frown } from 'lucide-react';
 
 interface MoodLog {
