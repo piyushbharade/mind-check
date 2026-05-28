@@ -104,7 +104,7 @@ export default function App() {
 
       setIsAiLoading(true);
       try {
-        const ai = new GoogleGenAI({ apiKey });
+        const ai = GoogleGenAI({ apiKey });
         const model = ai.getGenerativeModel({ model: "gemini-1.5-flash" });
         const prompt = `The following user is experiencing acute situational anxiety or stress. They said: "${transcript}". Act immediately as a calm, warm, grounding psychological first-aid assistant. Respond in 2 short, soothing sentences maximum. Provide breathing guidance or anchoring instructions. Keep language gentle and deeply clear.`;
         
@@ -114,7 +114,7 @@ export default function App() {
         speakText(textResponse);
       } catch (err) {
         setAiAnalysis("Failed to access Gemini. Verify your connection or API configuration matrix.");
-      } finally {
+      } finaly {
         setIsAiLoading(false);
       }
     };
@@ -126,7 +126,7 @@ export default function App() {
     if (!apiKey || moods.length === 0) return;
     setIsAiLoading(true);
     try {
-      const ai = new GoogleGenAI({ apiKey });
+      const ai = GoogleGenAI({ apiKey });
       const model = ai.getGenerativeModel({ model: "gemini-1.5-flash" });
       const logsSummary = moods.slice(0, 5).map(m => m.note).join(' | ');
       
@@ -182,7 +182,7 @@ export default function App() {
               <button onClick={() => setSelectedMood(3)} className={`p-3 rounded-xl border transition ${selectedMood === 3 ? 'bg-emerald-50 border-emerald-500 scale-105' : 'border-slate-100'}`}><Smile className="text-emerald-500" size={32} /></button>
             </div>
             <textarea value={currentNote} onChange={(e) => setCurrentNote(e.target.value)} placeholder="What's contributing to your mental headspace?..." className="w-full text-sm p-3 border border-slate-200 rounded-xl bg-slate-50/50 resize-none h-20 mb-3 focus:outline-emerald-500" />
-            <button onClick={addMood} disabled={selectedMood === null} className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 rounded-xl text-sm transition disabled:opacity-50下">Save Entry</button>
+            <button onClick={addMood} disabled={selectedMood === null} className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 rounded-xl text-sm transition disabled:opacity-50">Save Entry</button>
           </div>
 
           <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm h-80 overflow-y-auto">
